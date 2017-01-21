@@ -1,0 +1,57 @@
+consumes:
+- application/json
+- application/xml
+- application/gob
+- application/x-gob
+definitions:
+  GoaExampleHello:
+    description: Message from Demo App API (default view)
+    example:
+      msg: Quia quia labore magni numquam aut.
+    properties:
+      msg:
+        example: Quia quia labore magni numquam aut.
+        type: string
+    required:
+    - msg
+    title: 'Mediatype identifier: application/vnd.goa.example.hello+json; view=default'
+    type: object
+host: localhost:8080
+info:
+  description: Say Hello
+  title: The Hello App
+  version: ""
+paths:
+  /hello/{name}:
+    get:
+      description: API calls your name
+      operationId: Hello#hello
+      parameters:
+      - description: Name
+        in: path
+        name: name
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/GoaExampleHello'
+      schemes:
+      - http
+      summary: hello Hello
+      tags:
+      - Hello
+produces:
+- application/json
+- application/xml
+- application/gob
+- application/x-gob
+responses:
+  OK:
+    description: OK
+    schema:
+      $ref: '#/definitions/GoaExampleHello'
+schemes:
+- http
+swagger: "2.0"

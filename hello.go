@@ -20,8 +20,11 @@ func (c *HelloController) Hello(ctx *app.HelloHelloContext) error {
 	// HelloController_Hello: start_implement
 
 	// Put your logic here
+	msg := "Hello, " + ctx.Name + "!"
 
 	// HelloController_Hello: end_implement
-	res := &app.GoaExampleHello{}
+	res := &app.GoaExampleHello{
+		Msg: msg,
+	}
 	return ctx.OK(res)
 }

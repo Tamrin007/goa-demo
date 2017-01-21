@@ -13,7 +13,7 @@ var _ = API("Demo App", func() {
 })
 
 var _ = Resource("Hello", func() {
-	// DefaultMedia(HelloMedia)
+	DefaultMedia(HelloMedia)
 	Action("hello", func() {
 		Routing(GET("/hello/:name"))
 		Description("API calls your name")
@@ -21,5 +21,16 @@ var _ = Resource("Hello", func() {
 			Param("name", String, "Name")
 		})
 		Response(OK)
+	})
+})
+
+var HelloMedia = MediaType("application/vnd.goa.example.hello+json", func() {
+	Description("Message from Demo App API")
+	Attributes(func() {
+		Attribute("msg", String, "")
+		Required("msg")
+	})
+	View("default", func() {
+		Attribute("msg")
 	})
 })

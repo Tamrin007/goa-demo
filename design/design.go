@@ -34,3 +34,11 @@ var HelloMedia = MediaType("application/vnd.goa.example.hello+json", func() {
 		Attribute("msg")
 	})
 })
+
+var _ = Resource("swagger", func() {
+	Origin("*", func() {
+		Methods("GET")
+	})
+	Files("/swagger.json", "swagger/swagger.json")
+	Files("/swaggerui/*filepath", "swaggerui/dist")
+})

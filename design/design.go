@@ -40,5 +40,5 @@ var _ = Resource("swagger", func() {
 		Methods("GET")
 	})
 	Files("/swagger.json", "swagger/swagger.json")
-	Files("/swaggerui/*filepath", "swaggerui/dist")
+	Files("/swagger/*filepath", "swagger/dist")
 })

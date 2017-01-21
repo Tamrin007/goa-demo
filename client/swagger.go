@@ -21,14 +21,15 @@ import (
 	"path"
 )
 
-// DownloadSwaggerJSON downloads swagger.json and writes it to the file dest.
+// DownloadSwagger downloads /files with the given filename and writes it to the file dest.
 // It returns the number of bytes downloaded in case of success.
-func (c *Client) DownloadSwaggerJSON(ctx context.Context, dest string) (int64, error) {
+func (c *Client) DownloadSwagger(ctx context.Context, filename, dest string) (int64, error) {
 	scheme := c.Scheme
 	if scheme == "" {
 		scheme = "http"
 	}
-	u := url.URL{Host: c.Host, Scheme: scheme, Path: "/swagger.json"}
+	p := path.Join("/swagger/", filename)
+	u := url.URL{Host: c.Host, Scheme: scheme, Path: p}
 	req, err := http.NewRequest("GET", u.String(), nil)
 	if err != nil {
 		return 0, err
@@ -55,15 +56,14 @@ func (c *Client) DownloadSwaggerJSON(ctx context.Context, dest string) (int64, e
 	return io.Copy(out, resp.Body)
 }
 
-// DownloadSwaggerui downloads /files with the given filename and writes it to the file dest.
+// DownloadSwaggerJSON downloads swagger.json and writes it to the file dest.
 // It returns the number of bytes downloaded in case of success.
-func (c *Client) DownloadSwaggerui(ctx context.Context, filename, dest string) (int64, error) {
+func (c *Client) DownloadSwaggerJSON(ctx context.Context, dest string) (int64, error) {
 	scheme := c.Scheme
 	if scheme == "" {
 		scheme = "http"
 	}
-	p := path.Join("/swaggerui/", filename)
-	u := url.URL{Host: c.Host, Scheme: scheme, Path: p}
+	u := url.URL{Host: c.Host, Scheme: scheme, Path: "/swagger.json"}
 	req, err := http.NewRequest("GET", u.String(), nil)
 	if err != nil {
 		return 0, err

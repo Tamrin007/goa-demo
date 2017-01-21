@@ -90,9 +90,9 @@ paths:
       schemes:
       - http
       summary: Download swagger/swagger.json
-  /swaggerui/{filepath}:
+  /swagger/{filepath}:
     get:
-      operationId: swagger#/swaggerui/*filepath
+      operationId: swagger#/swagger/*filepath
       parameters:
       - description: Relative file path
         in: path
@@ -110,7 +110,7 @@ paths:
             $ref: '#/definitions/error'
       schemes:
       - http
-      summary: Download swaggerui/dist
+      summary: Download swagger/dist
 produces:
 - application/json
 - application/xml

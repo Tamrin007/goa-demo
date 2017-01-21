@@ -249,9 +249,9 @@ func (cmd *DownloadCommand) Run(c *client.Client, args []string) error {
 		}
 		goto found
 	}
-	if strings.HasPrefix(rpath, "/swaggerui/") {
-		fnd = c.DownloadSwaggerui
-		rpath = rpath[11:]
+	if strings.HasPrefix(rpath, "/swagger/") {
+		fnd = c.DownloadSwagger
+		rpath = rpath[9:]
 		if outfile == "" {
 			_, outfile = path.Split(rpath)
 		}

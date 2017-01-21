@@ -11,3 +11,15 @@ var _ = API("Demo App", func() {
 	Scheme("http")
 	Host("localhost:8080")
 })
+
+var _ = Resource("Hello", func() {
+	// DefaultMedia(HelloMedia)
+	Action("hello", func() {
+		Routing(GET("/hello/:name"))
+		Description("API calls your name")
+		Params(func() {
+			Param("name", String, "Name")
+		})
+		Response(OK)
+	})
+})
